@@ -56,13 +56,13 @@ header {
 
 
 /* high score button */
-#btn-hs {
+h3 {
     background-color: white;
     color: var(--secondary-color);
     border: none;
     font-size: 24px;
 }
-#btn-hs:hover {
+h3:hover {
     cursor: pointer;
 }
 /* high score button end */
@@ -79,3 +79,4 @@ header {
     margin: 25px;
     font-size: 24px;
 }
+
