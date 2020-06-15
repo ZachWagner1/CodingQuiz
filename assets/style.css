@@ -30,7 +30,7 @@ h1 {
     font-size: 48px;
 }
 /* start quiz button */
-#btn-start {
+#button-start {
     background-color: var(--primary-color);
     color: white;
     padding: 16px 32px;
@@ -40,7 +40,7 @@ h1 {
     font-size: 20px;
 }
 
-#btn-start:hover {
+#button-start:hover {
     background-color: var(--secondary-color);
     cursor: pointer;
 }
@@ -80,3 +80,15 @@ h3:hover {
     font-size: 24px;
 }
 
+.response-message {
+    color: var(--quartenary-color);
+    font-style: italic;
+    border-top: 2px solid var(--quartenary-color);
+    margin-top: 20px;
+    padding-top: 5px;
+    font-size: 20px;
+}
+
+.gameover h2 {
+    font-size: 32px;
+}

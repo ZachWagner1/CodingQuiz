@@ -2,7 +2,7 @@ var page = document.getElementById('page');
 var content = document.getElementById('content')
 var displayTime = document.getElementById('timer');
 var highScoresList = document.getElementById('high-score');
-var btnStart = document.getElementById('btn-start');
+var buttonStart = document.getElementById('button-start');
 var countDown = 60;
 var scoreArr = uploadScore() || [];
 var questionIndex = 0;
@@ -67,7 +67,7 @@ function generateQuestion(questionObj) {
     for (var i = 0; i < answer.length; i++) {
         var answerElement = document.createElement('li');
         answerElement.className = 'answer-item';
-        answerElement.innerHTML = `<button class="btn btn-answer">${i + 1}. ${answer[i]}</button>`;
+        answerElement.innerHTML = `<button class="button-answer">${i + 1}. ${answer[i]}</button>`;
         if(i === questionObj.rightAnswer) {
             answerElement.setAttribute('data-right-answer', 'true');
         }
@@ -122,7 +122,7 @@ function gameOver() {
     gameOverElement.appendChild(gameOverMessage);
 
     var scoreFinalMessage = document.createElement('h3');
-    scoreFinalMessage.innerText = 'You final score is ';
+    scoreFinalMessage.innerText = 'Your final score is ';
 
     var scoreElement = document.createElement('span');
     scoreElement.id = 'user-score';
@@ -139,7 +139,7 @@ function gameOver() {
     var userStatsForm = document.createElement('form');
     userStatsForm.innerHTML = "<label for='initials'>Enter Initials:</label>" +
                               "<input type='text' id='initials' name='initials' maxlength=2>" +
-                              "<button class='btn btn-short' type='submit'>Submit</button>";
+                              "<button class='button-short' type='submit'>Submit</button>";
     
     userStatsForm.addEventListener ('submit', enterStats);
 
@@ -165,31 +165,31 @@ function highScorePage() {
     highScoresContainerElement.id = 'high-scores';
     
     var headText = document.createElement('h2');
-    headText.innertext = 'High Scores';
+    headText.innertext = 'HighScores';
     highScoresContainerElement.appendChild(headText);
     var highScoresList = document.createElement('ul');
     for(var i = 0; i < scoreArr.length; i++) {
         var userStats = document.createElement('li');
-        userStats.innertext = i + 1 + '. ' + scoreArr[i].user + ' - ' + scoreArr.score;
+        userStats.innertext = i + 1 + '. ' + scoreArr[i].user + ' - ' + scoreArr[i].score;
         highScoresList.appendChild(userStats);  
 }
-highScoresContainerElement.appendChild(highScoresList);
-var actionContainer = document.createElement('div');
-actionContainer.className = 'action';
-var backBtn = document.createElement('a');
-backBtn.id = 'back-page';
-backBtn.setAttribute('href', './index.html');
-backBtn.classlist = 'btn btn-short';
-backBtn.innerText = 'Back';
-actionContainer.appendChild(backBtn);
-var clearScore = document.createElement('button');
-clearScore.classlist = 'btn btn-short';
-clearScore.innertext = 'Clear HighScores';
-clearScore.addEventListener('click', clearHighScores);
-actionContainer.appendChild(clearScore);
+    highScoresContainerElement.appendChild(highScoresList);
+    var actionContainer = document.createElement('div');
+    actionContainer.className = 'action';
+    var backBtn = document.createElement('a');
+    backBtn.id = 'back-page';
+    backBtn.setAttribute('href', './index.html');
+    backBtn.classlist = 'button-short';
+    backBtn.innerText = 'Back';
+    actionContainer.appendChild(backBtn);
+    var clearScore = document.createElement('button');
+    clearScore.classlist = 'button-short';
+    clearScore.innertext = 'Clear HighScores';
+    clearScore.addEventListener('click', clearHighScores);
+    actionContainer.appendChild(clearScore);
 
-highScoresContainerElement.appendChild(actionContainer);
-page.appendChild(highScoresContainerElement);
+    highScoresContainerElement.appendChild(actionContainer);
+    page.appendChild(highScoresContainerElement);
 
 }
 
@@ -203,6 +203,7 @@ function clearHighScores() {
 }
 
 function savedScores() {
+    scoreArr.sort((a,b) => b.score - a.score);
     localStorage.setItem('stats', JSON.stringify(scoreArr));
 }
 
@@ -213,5 +214,6 @@ function uploadScore() {
     }
     return (stats = JSON.parse(stats));
 }
-//highScoresList.addEventListener('click', highScorePage);
-btnStart.addEventListener('click', quizStart);
+highScoresList.addEventListener('click', highScorePage);
+buttonStart.addEventListener('click', quizStart);
+console.log(uploadScore);
